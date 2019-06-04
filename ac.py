@@ -139,7 +139,7 @@ def main():
 
 	else: #we good, proceede as normal
 		if state == 'ON': #on/ac running
-			if (temp < lowCutOff) or (runTime > maxRunTime) or (coolingLimitReached(4, (temp>=((highCutOff+lowCutOff)/2) or preHeatCooling))): 
+			if (temp < lowCutOff) or (runTime > maxRunTime) or (coolingLimitReached(4, (temp>=((highCutOff+lowCutOff)/2) or preHeatCooling), runTime)): 
 				turnOFF()
 				logData('turned AC OFF')
 				runTime = 0
