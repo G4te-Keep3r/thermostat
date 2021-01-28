@@ -4,7 +4,7 @@ Onion omega 2+ with oled and relay expansion running ac.py on 1 minute cronjob b
 All the random helper tools are comming soon (being refined)
 
 # config
-git clone git@github.com:G4te-Keep3r/thermostat.git .
+git clone https://github.com/G4te-Keep3r/thermostat.git .
 
 edit the following in thermostatFunctions.py
 
@@ -28,9 +28,13 @@ t_attic = "28-0301a279034b"
 
 *moving all this stuff to .env file so will be easier*
 
-*working on a probe discovery script, and ways to edit probe number and names (if not obvious this project is EXTREAMLY custom designed)*
+*working on a probe discovery script, and ways to edit the number of probes and their names (if not obvious this project is EXTREAMLY custom designed)*
 
 # install, from /root
 chmod +x install.sh
 
 ./install.sh
+
+# after reboot need to run this again, cron update for this is on todo list
+
+insmod w1-gpio-custom bus0=0,19,0
