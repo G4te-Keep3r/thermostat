@@ -1,0 +1,275 @@
+{
+  "aliasColors": {},
+  "bars": false,
+  "dashLength": 10,
+  "dashes": false,
+  "datasource": "MySQL",
+  "fill": 0,
+  "gridPos": {
+    "h": 9,
+    "w": 12,
+    "x": 0,
+    "y": 0
+  },
+  "id": 2,
+  "legend": {
+    "avg": false,
+    "current": true,
+    "max": false,
+    "min": false,
+    "show": true,
+    "total": false,
+    "values": true
+  },
+  "lines": true,
+  "linewidth": 1,
+  "links": [],
+  "nullPointMode": "null",
+  "options": {},
+  "percentage": false,
+  "pointradius": 2,
+  "points": false,
+  "renderer": "flot",
+  "seriesOverrides": [],
+  "spaceLength": 10,
+  "stack": false,
+  "steppedLine": false,
+  "targets": [
+    {
+      "format": "time_series",
+      "group": [],
+      "metricColumn": "none",
+      "rawQuery": false,
+      "rawSql": "SELECT\n  utccol AS \"time\",\n  CONVERT(temp, decimal(10,7)) as temp\nFROM temps\nWHERE\n  $__timeFilter(utccol)\nORDER BY utccol",
+      "refId": "C",
+      "select": [
+        [
+          {
+            "params": [
+              "CONVERT(temp, decimal(10,7)) as temp"
+            ],
+            "type": "column"
+          }
+        ]
+      ],
+      "table": "temps",
+      "timeColumn": "utccol",
+      "timeColumnType": "datetime",
+      "where": [
+        {
+          "name": "$__timeFilter",
+          "params": [],
+          "type": "macro"
+        }
+      ]
+    },
+    {
+      "format": "time_series",
+      "group": [],
+      "metricColumn": "none",
+      "rawQuery": false,
+      "rawSql": "SELECT\n  utccol AS \"time\",\n  CONVERT(temp_door, decimal(10,7)) as temp_door\nFROM temps\nWHERE\n  $__timeFilter(utccol)\nORDER BY utccol",
+      "refId": "D",
+      "select": [
+        [
+          {
+            "params": [
+              "CONVERT(temp_door, decimal(10,7)) as temp_door"
+            ],
+            "type": "column"
+          }
+        ]
+      ],
+      "table": "temps",
+      "timeColumn": "utccol",
+      "timeColumnType": "datetime",
+      "where": [
+        {
+          "name": "$__timeFilter",
+          "params": [],
+          "type": "macro"
+        }
+      ]
+    },
+    {
+      "format": "time_series",
+      "group": [],
+      "metricColumn": "none",
+      "rawQuery": false,
+      "rawSql": "SELECT\n  utccol AS \"time\",\n  CONVERT(temp_hall, decimal(10,7)) as temp_hall\nFROM temps\nWHERE\n  $__timeFilter(utccol)\nORDER BY utccol",
+      "refId": "E",
+      "select": [
+        [
+          {
+            "params": [
+              "CONVERT(temp_hall, decimal(10,7)) as temp_hall"
+            ],
+            "type": "column"
+          }
+        ]
+      ],
+      "table": "temps",
+      "timeColumn": "utccol",
+      "timeColumnType": "datetime",
+      "where": [
+        {
+          "name": "$__timeFilter",
+          "params": [],
+          "type": "macro"
+        }
+      ]
+    },
+    {
+      "format": "time_series",
+      "group": [],
+      "metricColumn": "none",
+      "rawQuery": false,
+      "rawSql": "SELECT\n  utccol AS \"time\",\n  CONVERT(attic, decimal(10,7)) as attic\nFROM temps\nWHERE\n  $__timeFilter(utccol)\nORDER BY utccol",
+      "refId": "B",
+      "select": [
+        [
+          {
+            "params": [
+              "CONVERT(attic, decimal(10,7)) as attic"
+            ],
+            "type": "column"
+          }
+        ]
+      ],
+      "table": "temps",
+      "timeColumn": "utccol",
+      "timeColumnType": "datetime",
+      "where": [
+        {
+          "name": "$__timeFilter",
+          "params": [],
+          "type": "macro"
+        }
+      ]
+    },
+    {
+      "format": "time_series",
+      "group": [],
+      "metricColumn": "none",
+      "rawQuery": false,
+      "rawSql": "SELECT\n  utccol AS \"time\",\n  outside\nFROM weather\nWHERE\n  $__timeFilter(utccol)\nORDER BY utccol",
+      "refId": "A",
+      "select": [
+        [
+          {
+            "params": [
+              "outside"
+            ],
+            "type": "column"
+          }
+        ]
+      ],
+      "table": "weather",
+      "timeColumn": "utccol",
+      "timeColumnType": "datetime",
+      "where": [
+        {
+          "name": "$__timeFilter",
+          "params": [],
+          "type": "macro"
+        }
+      ]
+    },
+    {
+      "format": "time_series",
+      "group": [],
+      "metricColumn": "none",
+      "rawQuery": false,
+      "rawSql": "SELECT\n  utccol AS \"time\",\n  CONVERT(lowCutoff, decimal(10,7)) as lowCutoff\nFROM vars\nWHERE\n  $__timeFilter(utccol)\nORDER BY utccol",
+      "refId": "F",
+      "select": [
+        [
+          {
+            "params": [
+              "CONVERT(lowCutoff, decimal(10,7)) as lowCutoff"
+            ],
+            "type": "column"
+          }
+        ]
+      ],
+      "table": "vars",
+      "timeColumn": "utccol",
+      "timeColumnType": "datetime",
+      "where": [
+        {
+          "name": "$__timeFilter",
+          "params": [],
+          "type": "macro"
+        }
+      ]
+    },
+    {
+      "format": "time_series",
+      "group": [],
+      "metricColumn": "none",
+      "rawQuery": false,
+      "rawSql": "SELECT\n  utccol AS \"time\",\n  CONVERT(highCutoff, decimal(10,7)) as highCutoff\nFROM vars\nWHERE\n  $__timeFilter(utccol)\nORDER BY utccol",
+      "refId": "G",
+      "select": [
+        [
+          {
+            "params": [
+              "CONVERT(highCutoff, decimal(10,7)) as highCutoff"
+            ],
+            "type": "column"
+          }
+        ]
+      ],
+      "table": "vars",
+      "timeColumn": "utccol",
+      "timeColumnType": "datetime",
+      "where": [
+        {
+          "name": "$__timeFilter",
+          "params": [],
+          "type": "macro"
+        }
+      ]
+    }
+  ],
+  "thresholds": [],
+  "timeFrom": null,
+  "timeRegions": [],
+  "timeShift": null,
+  "title": "tempz",
+  "tooltip": {
+    "shared": true,
+    "sort": 0,
+    "value_type": "individual"
+  },
+  "type": "graph",
+  "xaxis": {
+    "buckets": null,
+    "mode": "time",
+    "name": null,
+    "show": true,
+    "values": []
+  },
+  "yaxes": [
+    {
+      "format": "short",
+      "label": null,
+      "logBase": 1,
+      "max": null,
+      "min": null,
+      "show": true
+    },
+    {
+      "format": "short",
+      "label": null,
+      "logBase": 1,
+      "max": null,
+      "min": null,
+      "show": true
+    }
+  ],
+  "yaxis": {
+    "align": false,
+    "alignLevel": null
+  }
+}

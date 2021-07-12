@@ -1,34 +1,50 @@
-from time import sleep
-from os import popen, path
+#from thermostatFunctions import *
+from mysql.connector import connect, Error
+import os
 
-t_id1 = "28-0516a02c71ff"
-t_hall = "28-0516a06388ff"
-t_door = "28-0516a3734cff"
+def getTempSensors():
+	ret = []
+	try:
+		try:
+			with connect(
+				host="localhost",
+				user="ac",
+				password="",
+				database="ac",
+			) as connection:
+				with connection.cursor() as cursor:
+					cursor.execute("SELECT * FROM tempsensors order by priority+0 asc")
+					records = cursor.fetchall()
+					for row in records:
+						#print(row[0], row[1], row[2])
+						ret.append([row[1], row[2]])
+						#ret.append(row[1]) #name (row[2]) will be needed in future versions
+		except Exception as e:
+			print(e)
+	except Error as e:
+		raise e
+	return ret
 
-t_attic = "28-0516a069b0ff"
-
-def getTemp(w1id = t_id1):
+def getTemp(w1id):# = t_id1):
 	try:
 		cmd = "cat /sys/devices/w1_bus_master1/"+w1id+"/w1_slave"
-		result = popen(cmd).read()
+		result = os.popen(cmd).read()
 		result = result[result.find('t=')+2:]
 		t = int(result)/1000.0
 		#C to F
 		t *= 1.8
 		t += 32
 		return t
-	except Exception, e:
+	except Exception as e:
+		print(e)
 		return -1
 
-
 def main():
-	print 'main:', getTemp(t_id1)
-	sleep(15)
-	print 'hall:', getTemp(t_hall)
-	sleep(15)
-	print 'door:', getTemp(t_door)
-	sleep(15)
-	print 'attic:', getTemp(t_attic)
+	#print(getTemp('28-0516a02c71ff'))
+	#return
+	for probe in getTempSensors():
+		#print(probe)
+		print(probe[1], getTemp(probe[0]))
 
 if __name__ == '__main__':
 	main()
