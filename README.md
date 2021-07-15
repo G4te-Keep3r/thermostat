@@ -23,13 +23,6 @@ Before cron, run ac.py and weatherLogger.py so you can see errors if there are a
 Add ac.py as 1 minute cronjob and  as 10 minute cronjob.
 
 
-# after reboot need to run this again, cron update for this is on todo list
-
-~~ insmod w1-gpio-custom bus0=0,19,0 ~~
-
-this section left in incase a similar issue is found with pi, but will be removed if this ends up being only an old hardware issue
-
-
 # grafana / mysql
 
 to get grafana to play nice, there are 2 datetime columns-local and utc (recordDT and utccol). The way it is currently done, you have to update tzoffset twice a year. [INSERT RANT HERE ABOUT THE INSANTY OF STILL CHANGING CLOCKS]
