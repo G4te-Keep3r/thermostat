@@ -27,7 +27,13 @@ Add ac.py as 1 minute cronjob and  as 10 minute cronjob.
 
 to get grafana to play nice, there are 2 datetime columns-local and utc (recordDT and utccol). The way it is currently done, you have to update tzoffset twice a year. [INSERT RANT HERE ABOUT THE INSANTY OF STILL CHANGING CLOCKS]
 
-you will need to run '''set global time_zone='+00:00';''' from mysql console as well
+<del>you will need to run '''set global time_zone='+00:00';''' from mysql console as well<del>
+
+To fix timezone issues, add the following to /etc/mysql/conf.d/mysql.cnf
+init_command="set global time_zone='+00:00'"
+
+
+Without that being in cnf, it is messed up with every reboot.
 
 
 # MAIN TODOs
