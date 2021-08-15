@@ -33,7 +33,7 @@ To fix timezone issues, add the following to /etc/mysql/conf.d/mysql.cnf
 init_command="set global time_zone='+00:00'"
 
 
-Without that being in cnf, it is messed up with every reboot.
+Without that being in cnf, it is messed up with every reboot. ***this fixes a reboot, but not a power loss it seems. Just fyi***
 
 
 # MAIN TODOs
