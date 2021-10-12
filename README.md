@@ -20,7 +20,7 @@ Run createDB.py, populateDB.py, init_tempSensors.py
 
 Before cron, run ac.py and weatherLogger.py so you can see errors if there are any.
 
-Add ac.py as 1 minute cronjob and  as 10 minute cronjob.
+Add ac.py as 1 minute cronjob and weatherLogger.py as 10 minute cronjob.
 
 
 # grafana / mysql
@@ -41,3 +41,7 @@ Without that being in cnf, it is messed up with every reboot. ***this fixes a re
 * script asking for info for writePersonal()
 * more cleaning up code from migration
 * update install.sh
+* add example picture of hardware and grafana
+* wiring section (gpio pin and about 1 wire/resistor)
+* wiring relay/ac unit
+* hardware list/links to buy
