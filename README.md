@@ -6,14 +6,14 @@ The optimizations were found by hand tweaking stuff as this was developed over 3
 Weather is currently updated every 10 minutes via cronjob. Mainly this is due to current owm one call API limits, but outside temperature doesn't tend to change fast enough that you would really need to update it more frequently anyways.
 
 
-![in use](https://raw.githubusercontent.com/G4te-Keep3r/thermostat/master/.github/in-use.jpg)
+![in use](https://github.com/G4te-Keep3r/thermostat/blob/master/in-use.jpg)
 
 
 # wiring / hardware
 * 1 wire temp sensor such as https://www.amazon.com/gp/product/B00CHEZ250/
 	* I used PWM extension cables (also commonly called 3 pin servo cables) for convenience with the Y splitters, extensions, and modularity for replacing a sensor. But I also had a bunch available to use.
 	* data pin goes to GPIO4
-	* ![wiring](https://raw.githubusercontent.com/G4te-Keep3r/thermostat/master/.github/wiring.jpg)
+	* ![wiring](https://github.com/G4te-Keep3r/thermostat/blob/master/wiring.jpg)
 * relay hat such as https://www.amazon.com/gp/product/B07CZL2SKN/
 	* any relay hat should work, just the GPIO pin might need to be changed
 * GPIO expander not needed unless you are putting a screen on it. Currently all the screen is good for is having grafana up or a terminal tailing logs
@@ -55,7 +55,7 @@ Without that being in cnf, it is messed up with every reboot. ***this fixes a re
 # MAIN TODOs
 * update install.sh
 * get forecast to know when to not precool
-	* ![2 day graph](https://raw.githubusercontent.com/G4te-Keep3r/thermostat/master/.github/2day-example-graph-with-note.png)
+	* ![2 day graph](https://github.com/G4te-Keep3r/thermostat/blob/master/2day-example-graph-with-note.png)
 	* before cool front, there is a bit of precooling
 		* looks like there might be a good candidate hotter day next week, or will generate a graph from saved summer data to highlight the difference better
 	* after the cool front came in, the forecast would have shown that the daily high did not need any precooling
