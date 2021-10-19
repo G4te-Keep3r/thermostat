@@ -52,6 +52,10 @@ init_command="set global time_zone='+00:00'"
 Without that being in cnf, it is messed up with every reboot. ***this fixes a reboot, but not a power loss it seems. Just fyi***
 
 
+# LOGS
+If you did not git pull from home dir, and username is pi, you need to edit the path in thermostatFunctions.py (line 32)
+
+
 # MAIN TODOs
 * update install.sh
 * get forecast to know when to not precool
@@ -64,6 +68,7 @@ Without that being in cnf, it is messed up with every reboot. ***this fixes a re
 * sensor replacement
 	* replace_tempSensors.py
 	* ***not tested***
+* logDir path - as currently is, is hard coded for git pull in home dir of user called pi. Can't use ~ because cron runs as root...
 
 
 # FUTURE PLANS

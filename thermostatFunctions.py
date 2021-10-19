@@ -28,10 +28,13 @@ def getTemp(w1id):
 		return -1
 
 def logData(data):
-	logfilename = datetime.datetime.now().strftime('/home/pi/temp-thermostat/logDir/log_%Y_%m_%d_.txt')
-	with open(logfilename, 'a+') as w:
-		w.write(data)
-		w.write('\n')
+	try:
+		logfilename = datetime.datetime.now().strftime('/home/pi/thermostat/logDir/log_%Y_%m_%d_.txt')
+		with open(logfilename, 'a+') as w:
+			w.write(data)
+			w.write('\n')
+	except Exception as e:
+		raise e
 
 #x is number of last temps to look at...change name to something like history_depth?
 def coolingLimitReached(x, aboveHigh, runTime):
