@@ -1,1 +1,4 @@
-logDir/
+logDir/*
+
+# exception to the rule
+!logDir/.gitkeep 
