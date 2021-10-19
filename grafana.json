@@ -68,13 +68,13 @@
       "group": [],
       "metricColumn": "none",
       "rawQuery": false,
-      "rawSql": "SELECT\n  utccol AS \"time\",\n  CONVERT(temp_door, decimal(10,7)) as temp_door\nFROM temps\nWHERE\n  $__timeFilter(utccol)\nORDER BY utccol",
+      "rawSql": "SELECT\n  utccol AS \"time\",\n  CONVERT(temp_2, decimal(10,7)) as temp_2\nFROM temps\nWHERE\n  $__timeFilter(utccol)\nORDER BY utccol",
       "refId": "D",
       "select": [
         [
           {
             "params": [
-              "CONVERT(temp_door, decimal(10,7)) as temp_door"
+              "CONVERT(temp_2, decimal(10,7)) as temp_2"
             ],
             "type": "column"
           }
@@ -96,13 +96,13 @@
       "group": [],
       "metricColumn": "none",
       "rawQuery": false,
-      "rawSql": "SELECT\n  utccol AS \"time\",\n  CONVERT(temp_hall, decimal(10,7)) as temp_hall\nFROM temps\nWHERE\n  $__timeFilter(utccol)\nORDER BY utccol",
+      "rawSql": "SELECT\n  utccol AS \"time\",\n  CONVERT(temp_3, decimal(10,7)) as temp_3\nFROM temps\nWHERE\n  $__timeFilter(utccol)\nORDER BY utccol",
       "refId": "E",
       "select": [
         [
           {
             "params": [
-              "CONVERT(temp_hall, decimal(10,7)) as temp_hall"
+              "CONVERT(temp_3, decimal(10,7)) as temp_3"
             ],
             "type": "column"
           }

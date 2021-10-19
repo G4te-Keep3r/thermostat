@@ -25,7 +25,7 @@ def getTempSensors():
 		raise e
 	return ret
 
-def getTemp(w1id):# = t_id1):
+def getTemp(w1id):
 	try:
 		cmd = "cat /sys/devices/w1_bus_master1/"+w1id+"/w1_slave"
 		result = os.popen(cmd).read()
@@ -36,15 +36,12 @@ def getTemp(w1id):# = t_id1):
 		t += 32
 		return t
 	except Exception as e:
-		print(e)
 		return -1
 
 def main():
-	#print(getTemp('28-0516a02c71ff'))
-	#return
 	for probe in getTempSensors():
 		#print(probe)
-		print(probe[1], getTemp(probe[0]))
+		print probe[1], getTemp(probe[0])
 
 if __name__ == '__main__':
 	main()

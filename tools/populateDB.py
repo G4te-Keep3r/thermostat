@@ -37,7 +37,6 @@ def saveVarsToDB(arr):
 		raise e
 
 def main():
-	#955135 is last record in web db
 	varsArr = ['5.0', '30.0', '30.0', '58.25', '60.25', '5', '0', '0.05', '10.0', '0.075', '0.1', '10.0', '25.0', 'OFF']
 	saveVarsToDB(varsArr)
 	print('vars done')

@@ -47,13 +47,13 @@ def main():
 	#read temps
 	sensorIDs = getTempSensors()
 	temp = getTemp(sensorIDs[0][0])#t_id1)
-	temp_door = getTemp(sensorIDs[1][0])#t_door)
-	temp_hall = getTemp(sensorIDs[2][0])#t_hall)
+	temp_2 = getTemp(sensorIDs[1][0])#t_door)
+	temp_3 = getTemp(sensorIDs[2][0])#t_hall)
 	attic = getTemp(sensorIDs[-1][0])#t_attic)		# -1 because it allows easier addition/removal of others
 
 	logData("temp is %s"%temp)
-	logData("temp_door is %s"%temp_door)
-	logData("temp_hall is %s"%temp_hall)
+	logData("%s is %s" % (sensorIDs[1][1],temp_2))
+	logData("%s is %s" % (sensorIDs[2][1],temp_3))
 	logData("attic is %s"%attic)
 	logData("")
 	logData("highCutOff is %s"%highCutOff)
@@ -87,7 +87,7 @@ def main():
 	for var in [minCooldown, maxCooldown, maxRunTime, lowCutOff, highCutOff, cooldownTime, runTime, acRunningLowCutOffRaisePercent, acRunningLowCutOffRaiseTimeMin, acOffHighCutOffLowerPercent, acOffHighCutOffLowerPercentNum2, acOffHighCutOffLowerTimeMin, acOffHighCutOffLowerTimeMinNum2, state]:
 		V_T_arr.append(var)
 
-	V_T_arr.extend([temp, temp_door, temp_hall, attic])
+	V_T_arr.extend([temp, temp_2, temp_3, attic])
 
 	saveV_T_ToDB(V_T_arr)
 

@@ -57,7 +57,7 @@ def writePersonal(arr):
 
 
 def printPersonal():
-	lables = ['pyowm_api_key', 'pyowm_location', 'pyowmlat', 'pyowmlon', 'tzoffset']
+	labels = ['pyowm_api_key', 'pyowm_location', 'pyowmlat', 'pyowmlon', 'tzoffset']
 	try:
 		try:
 			with connect(
@@ -69,9 +69,9 @@ def printPersonal():
 				with connection.cursor() as cursor:
 					cursor.execute("SELECT * FROM personal")
 					records = cursor.fetchall()
-					for row in records: #really need to find the "propper way" to do this
+					for row in records:
 						for i in range(len(row)):
-							print(lables[i], row[i])
+							print(labels[i], row[i])
 		except Error as e:
 			print(e)
 	except Error as e:
@@ -89,10 +89,9 @@ def createTablesDB():
 			with connection.cursor() as cursor:
 				#cursor.execute(create_db_query)
 
-
 				q1 = '''CREATE TABLE temps (temp TEXT NOT NULL,
-														temp_door TEXT NOT NULL,
-														temp_hall TEXT NOT NULL,
+														temp_2 TEXT NOT NULL,
+														temp_3 TEXT NOT NULL,
 														attic TEXT NOT NULL,
 														recordDT datetime NOT NULL,
 														utccol datetime NOT NULL);'''
@@ -158,8 +157,16 @@ def main():
 	makedb()
 	createTablesDB()
 
-	#lables = ['pyowm_api_key', 'pyowm_location', 'pyowmlat', 'pyowmlon', 'tzoffset']
-	writePersonal(['pyowm_api_key here', 'not currently used', 'lat', 'long', "'has to include the single quotes as part of string'"])
+	#labels = ['pyowm_api_key', 'pyowm_location', 'pyowmlat', 'pyowmlon', 'tzoffset']
+	pyowm_api_key = input('pyowm_api_key\n')
+	latitude = input('latitude (how weather is found)\n')
+	longitude = input('longitude (how weather is found)\n')
+	tzoffset =tzoffset input('your timezone UTC value (such as -05:00 for CDT)\n')
+	while len(tzoffset.split('-')[-1].split('+')[-1]) != 5:
+		print('error in formatting or something')
+		print('you must enter + or - followed by ##:00 where ## corresponds to your timezone')
+		tzoffset =tzoffset input('your timezone UTC value (such as -05:00 for CDT)\n')
+	writePersonal([pyowm_api_key, 'not currently used', latitude, longitude, "'"+tzoffset+"'"])
 	print()
 	printPersonal()
 

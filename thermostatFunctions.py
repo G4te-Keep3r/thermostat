@@ -1,17 +1,11 @@
 import os
-#import urllib2, urllib
-#, sqlite3
 import datetime
 import pyowm
 
 import RPi.GPIO as GPIO
 
-#t_id1 = "28-0516a02c71ff"
-
-
 os.system('modprobe w1-gpio')
 os.system('modprobe w1-therm')
-
 
 import pyowm
 
@@ -20,7 +14,7 @@ from mysql.connector import connect, Error
 #--------------------------------------------------------------------------
 # other
 #--------------------------------------------------------------------------
-def getTemp(w1id):# = t_id1):
+def getTemp(w1id):
 	try:
 		cmd = "cat /sys/devices/w1_bus_master1/"+w1id+"/w1_slave"
 		result = os.popen(cmd).read()
@@ -59,7 +53,7 @@ def coolingLimitReached(x, aboveHigh, runTime):
 	arr = getLastXtemps(x)
 	#print(arr)
 	#same = True
-	#curent code has x=4. Instead of all or nothing try coutning passes and if 75% pass
+	#curent code has x=4. Instead of all or nothing try counting passes and if 75% pass
 	#need to make simulator to virtually test all the variations
 	passes = 0
 	for i in range(x-1):
@@ -83,7 +77,7 @@ def coolingLimitReached(x, aboveHigh, runTime):
 	# False => keep on
 
 
-# should probably merge these 2 into 1 funtion "changeState or setState" that takes an argument as to if should turn it on or off
+# should probably merge these 2 into 1 function "changeState or setState" that takes an argument as to if should turn it on or off
 
 def turnOFF():
 	#gpio 21
@@ -136,7 +130,6 @@ def getV_S_FromDB(): #getVarsFromDB():, getSettngsFromDB():,,,, getLastOutsideTe
 					for i in range(len(row)-3):
 						arr.append(float(row[i]))
 					arr.append(row[-3])
-					#arr.append(int(row[-1]) + 1) #recordID from sqlite
 
 				cursor.execute("SELECT * FROM settings order by settingsIteration+0 DESC LIMIT 1")
 				records = cursor.fetchall()
@@ -144,7 +137,6 @@ def getV_S_FromDB(): #getVarsFromDB():, getSettngsFromDB():,,,, getLastOutsideTe
 					for i in range(len(row)-1): #dont need last entry (settings iteration)
 						arr.append(float(row[i]))
 
-				#cur = conn.execute("SELECT outside FROM weather WHERE recordID = "+str(recordID-1))
 				cursor.execute("SELECT recordDT, outside FROM weather order by recordDT DESC LIMIT 1")
 				records = cursor.fetchall()
 				lastOutsideTemp = 0.0
@@ -171,7 +163,7 @@ def saveV_T_ToDB(arr):
 		) as connection:
 			with connection.cursor() as cursor:
 				cursor.execute("INSERT INTO vars (minCooldown, maxCooldown, maxRunTime, lowCutOff, highCutOff, cooldownTime, runTime, acRunningLowCutOffRaisePercent, acRunningLowCutOffRaiseTimeMin, acOffHighCutOffLowerPercent, acOffHighCutOffLowerPercentNum2, acOffHighCutOffLowerTimeMin, acOffHighCutOffLowerTimeMinNum2, state, recordDT, utccol) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, CONVERT_TZ(now(), '+00:00', "+tzoffset+"), now())", (arr[0], arr[1], arr[2], arr[3], arr[4], arr[5], arr[6], arr[7], arr[8], arr[9], arr[10], arr[11], arr[12], arr[13]))
-				cursor.execute("INSERT INTO temps (temp, temp_door, temp_hall, attic, recordDT, utccol) VALUES (%s, %s, %s, %s, CONVERT_TZ(now(), '+00:00', "+tzoffset+"), now())", (arr[14], arr[15], arr[16], arr[17]))
+				cursor.execute("INSERT INTO temps (temp, temp_2, temp_3, attic, recordDT, utccol) VALUES (%s, %s, %s, %s, CONVERT_TZ(now(), '+00:00', "+tzoffset+"), now())", (arr[14], arr[15], arr[16], arr[17]))
 				connection.commit()
 	except Error as e:
 		print(e)
